@@ -1,5 +1,7 @@
 # XraySAM: A Lung Segmentation Model from fine-tuned SAM
 
+![Alt text](./xraysam_model.png)
+
 This repository contains a fine-tuned version of the medSAM model on lung segmentation. MedSAM model is based on Segment Anything model from Meta (SAM), specially trained on medical image datasets. Here, I fine-tune the SAM model on lung segmenation dataset, obtained from Kaggle (https://www.kaggle.com/datasets/nikhilpandey360/chest-xray-masks-and-labels). The fine-tuned model is available in HuggingFace. 
 
 The comparison of XraySAM and a fine-tuned RESNET50, a CNN based image segmentation model, is given in the report. My study shows that XraySAM with base-ViT (93.7M parameters) performance is on par with RESNET50 model with 800 images, and there is still potential for the model to improve with bigger dataset. Furthermore, with bigger SAM-ViT-Large (312M parameters) or Huge (641M parameters), we can get better performance. 
@@ -29,6 +31,16 @@ chmod 600 root_directory/.kaggle/kaggle.json
 
 kaggle datasets download -d nikhilpandey360/chest-xray-masks-and-labels
 
+mkdir chest_xray_dataset
+
+mv /content/Lung Segmentation/CXR_png /content/images/
+
+mv /content/Lung Segmentation/masks /content/masks/
+
+cp /content/Lung Segmentation/test/*.png /content/masks/
+
+python path_to_root_directory/file_rename.py /content/masks/
+
 ```
 
 ## XraySAM model:
@@ -47,5 +59,5 @@ To test the model:
 
 ## Notebook:
 
-The notebook directory contains the colab notebook that processes the dataset, trains and tests the model. 
+The notebook directory contains the colab notebook that processes the dataset, trains and tests the model. In addition to the xraysam model, I have also provided the RESUNET model for comparison.
 
