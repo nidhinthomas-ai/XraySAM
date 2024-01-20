@@ -12,7 +12,7 @@ To create the conda environment:
 
 `conda create -n xraysam -f environment.yml`
 
-To activate the ***xraysam**:
+To activate the **xraysam**:
 
 `conda activate xraysam`
 
